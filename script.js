@@ -49,7 +49,7 @@ form.addEventListener("submit", function(e){
     containerWorkouts.innerHTML = ""
     workouts.forEach(function(workout){
         const workoutHTml = `
-            <li class="workout workout--running" data-id="1234567890">
+            <li class="workout ${workout.type === 'running' ? 'workout--running' : 'workout--cycling'}" data-id="1234567890">
                 <h2 class="workout__title">${workout.type === "running" ? "Running" : "Cycling"} on ${workout.month} ${workout.day}</h2>
                 <div class="workout__details">
                 <span class="workout__icon">${workout.type === "running" ? "🏃‍♂️" : "🚲"}</span>
@@ -78,7 +78,7 @@ form.addEventListener("submit", function(e){
         L.popup({
             autoClose: false,
             closeOnClick: false,
-            className: "running-popup"
+            className: `${workout.type === "running" ? "running-popup" : "cycling-popup"}`
         })
         )
         .setPopupContent(`Type: ${workout.type}, distance: ${workout.distance}, duration: ${workout.duration}, cadence: ${workout.cadence}`)
